@@ -1,4 +1,4 @@
-# tage 1: Use nginx to serve the build files
+#stage 1: Use nginx to serve the build files
 FROM nginx:alpine
 
 # Remove default nginx static content
