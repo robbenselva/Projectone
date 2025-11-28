@@ -1,0 +1,393 @@
+Push event to branch main
+Connecting to https://api.github.com using robbenselva/******
+Obtained Jenkinsfile from ee919b3f230342693c6ef12ceaf31d8df4222d8e
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/projectone_main
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential github
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/projectone_main/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/robbenselva/Projectone.git # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/robbenselva/Projectone.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+using GIT_ASKPASS to set credentials 
+ > git fetch --no-tags --force --progress -- https://github.com/robbenselva/Projectone.git +refs/heads/main:refs/remotes/origin/main # timeout=10
+Checking out Revision ee919b3f230342693c6ef12ceaf31d8df4222d8e (main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f ee919b3f230342693c6ef12ceaf31d8df4222d8e # timeout=10
+Commit message: "one"
+ > git rev-list --no-walk e06284a27c00e52d1530f89e9141ac7b71d88668 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Check Branch)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ git rev-parse --short HEAD
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Image)
+[Pipeline] sh
++ chmod +x build.sh
++ ./build.sh robbenselvaone/project2-production1:ee919b3
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 337B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:alpine
+#2 ...
+
+#3 [auth] library/nginx:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:alpine
+#2 DONE 1.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 62B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 773B done
+#5 DONE 0.0s
+
+#6 [1/3] FROM docker.io/library/nginx:alpine@sha256:b3c656d55d7ad751196f21b7fd2e8d4da9cb430e32f646adcf92441b72f82b14
+#6 resolve docker.io/library/nginx:alpine@sha256:b3c656d55d7ad751196f21b7fd2e8d4da9cb430e32f646adcf92441b72f82b14 0.0s done
+#6 DONE 0.0s
+
+#7 [2/3] RUN rm -rf /usr/share/nginx/html/*
+#7 CACHED
+
+#8 [3/3] COPY build/ /usr/share/nginx/html/
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:7e2829b03d8658960f66f9a65c544c29af3d20c80b22b0e9b20ac12eb926d8d5 done
+#9 exporting config sha256:d3f700288fad8bd40ed920f8671e38902f694fdff88719e628fe91ce4f413c36 done
+#9 exporting attestation manifest sha256:77959e510acd0d45fe7b529f0b9e7bd2d69b84065b512e296d4eeef3512c54b5 0.0s done
+#9 exporting manifest list sha256:feb562e447eab006d4eaa8c640987c2c6727efb62d0805146e1aae28c14bcf06
+#9 exporting manifest list sha256:feb562e447eab006d4eaa8c640987c2c6727efb62d0805146e1aae28c14bcf06 0.0s done
+#9 naming to docker.io/robbenselvaone/project2-production1:ee919b3 done
+#9 unpacking to docker.io/robbenselvaone/project2-production1:ee919b3 0.0s done
+#9 DONE 0.1s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push Image)
+[Pipeline] withCredentials
+Masking supported pattern matches of $PASS
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [PASS]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ echo ****
++ docker login -u robbenselvaone --password-stdin
+Login Succeeded
++ docker push robbenselvaone/project2-production1:ee919b3
+The push refers to repository [docker.io/robbenselvaone/project2-production1]
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+194fa24e147d: Layer already exists
+ff8a36d5502a: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+3eaba6cd10a3: Layer already exists
+bdabb0d44271: Waiting
+bb4d2063b5f9: Waiting
+df413d6ebdc8: Waiting
+d9a55dab5954: Waiting
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Waiting
+ff8a36d5502a: Waiting
+211d50ea0629: Waiting
+2d35ebdb57d9: Waiting
+211d50ea0629: Layer already exists
+2d35ebdb57d9: Layer already exists
+bdabb0d44271: Layer already exists
+bb4d2063b5f9: Layer already exists
+df413d6ebdc8: Layer already exists
+d9a55dab5954: Layer already exists
+2e9f36ee25fa: Waiting
+8f6a6833e95d: Layer already exists
+ff8a36d5502a: Layer already exists
+2e9f36ee25fa: Pushed
+ee919b3: digest: sha256:feb562e447eab006d4eaa8c640987c2c6727efb62d0805146e1aae28c14bcf06 size: 856
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to EC2)
+[Pipeline] withCredentials
+Masking supported pattern matches of $SSH_KEY
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [SSH_KEY]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ scp -o StrictHostKeyChecking=no -i **** deploy.sh docker-compose.yml ubuntu@ec2-13-235-48-146.ap-south-1.compute.amazonaws.com:/tmp/
++ ssh -o StrictHostKeyChecking=no -i **** ubuntu@ec2-13-235-48-146.ap-south-1.compute.amazonaws.com cd /tmp && chmod +x deploy.sh && ./deploy.sh robbenselvaone/project2-production1:ee919b3
+Logging in to Docker Hub...
+Login Succeeded
+
+WARNING! Your credentials are stored unencrypted in '/home/ubuntu/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Pulling image: robbenselvaone/project2-production1:ee919b3
+time="2025-11-28T08:49:17Z" level=warning msg="/tmp/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ frontend Pulling 
+ 194fa24e147d Pulling fs layer 
+ ff8a36d5502a Pulling fs layer 
+ bdabb0d44271 Pulling fs layer 
+ 2d35ebdb57d9 Pulling fs layer 
+ 8f6a6833e95d Pulling fs layer 
+ 211d50ea0629 Pulling fs layer 
+ 3eaba6cd10a3 Pulling fs layer 
+ df413d6ebdc8 Pulling fs layer 
+ d9a55dab5954 Pulling fs layer 
+ bb4d2063b5f9 Pulling fs layer 
+ ff8a36d5502a Download complete 
+ d9a55dab5954 Download complete 
+ 2d35ebdb57d9 Downloading [===========================>                       ]  2.097MB/3.802MB
+ 8f6a6833e95d Download complete 
+ 194fa24e147d Download complete 
+ 3eaba6cd10a3 Download complete 
+ df413d6ebdc8 Downloading [==================================================>]     403B/403B
+ bdabb0d44271 Downloading [===>                                               ]  1.049MB/16.97MB
+ df413d6ebdc8 Download complete 
+ bdabb0d44271 Downloading [=====================>                             ]   7.34MB/16.97MB
+ 2d35ebdb57d9 Download complete 
+ 2d35ebdb57d9 Extracting 1 s
+ bdabb0d44271 Downloading [========================================>          ]  13.63MB/16.97MB
+ 2d35ebdb57d9 Extracting 1 s
+ bdabb0d44271 Download complete 
+ 8f6a6833e95d Extracting 1 s
+ 2d35ebdb57d9 Pull complete 
+ 8f6a6833e95d Extracting 1 s
+ d9a55dab5954 Pull complete 
+ 8f6a6833e95d Pull complete 
+ 194fa24e147d Pull complete 
+ 3eaba6cd10a3 Pull complete 
+ df413d6ebdc8 Pull complete 
+ ff8a36d5502a Pull complete 
+ bdabb0d44271 Extracting 1 s
+ bdabb0d44271 Extracting 1 s
+ bdabb0d44271 Extracting 1 s
+ bdabb0d44271 Extracting 1 s
+ bdabb0d44271 Pull complete 
+ bb4d2063b5f9 Download complete 
+ bb4d2063b5f9 Pull complete 
+ 211d50ea0629 Download complete 
+ 211d50ea0629 Pull complete 
+ frontend Pulled 
+Starting containers...
+time="2025-11-28T08:49:29Z" level=warning msg="/tmp/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Network tmp_default  Creating
+ Network tmp_default  Created
+ Container frontend-container  Creating
+ Container frontend-container  Created
+ Container frontend-container  Starting
+ Container frontend-container  Started
+Deployment completed successfully!
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+
+GitHub has been notified of this commit’s build result
+
+Finished: SUCCESS
