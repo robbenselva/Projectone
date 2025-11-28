@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   frontend:
-    image: ${IMAGE_NAME}
+    image: ${IMAGE}
     container_name: frontend-container
     ports:
       - "80:80"
