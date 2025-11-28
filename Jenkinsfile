@@ -19,9 +19,9 @@ pipeline {
                     }
 
                     if (env.BRANCH_NAME == "dev")
-                        env.REPO = "${DOCKERHUB_USER}/app-dev"
+                        env.REPO = "${DOCKERHUB_USER}/project2-dev"
                     else
-                        env.REPO = "${DOCKERHUB_USER}/app-prod"
+                        env.REPO = "${DOCKERHUB_USER}/project2-production1"
 
                     env.TAG = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
                     env.IMAGE = "${env.REPO}:${env.TAG}"
