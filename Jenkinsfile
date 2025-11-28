@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_USER = "your-dockerhub-username"
+        DOCKERHUB_USER = "robbenselva"
         DOCKERHUB_CREDS = "dockerhub-creds"     // Jenkins credential ID
         EC2_KEY = "ec2-ssh-key"                 // Jenkins SSH key credential ID
-        EC2_HOST = "your-ec2-public-dns"
-        EC2_USER = "ec2-user"
+        EC2_HOST = "ec2-13-235-48-146.ap-south-1.compute.amazonaws.com"
+        EC2_USER = "ubuntu"
     }
 
     stages {
